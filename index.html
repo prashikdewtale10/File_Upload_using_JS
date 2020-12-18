@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile Pic Uploading Systrem</title>
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<style type="text/css">
+	*{
+		margin: 0px;
+		padding:0px;
+		font-family: monospace;
+		
+	}
+	body{
+		display: flex;
+		justify-content: center;
+		align-content: center;
+		background-image: url(images/about.jpeg);
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	.container{
+		margin-top: 5%;
+		background-color: #333;
+		color: #fff;
+		width: 330px;
+		height: 540px;
+		box-shadow: 1px 2px 3px black;
+		cursor: pointer;
+	}
+	.info{
+		background-color: #222;
+		padding: 10px 35px ;
+		border-bottom: 1px solid #222;
+		display: flex;
+		justify-content: space-between;
+	}
+	li{
+		display: inline;
+		padding: 0 5px;
+		text-decoration: none;
+		text-align: center;
+	}
+	#img_frame{
+		margin-top: 2em;
+		border-radius: 50%;
+		border: 3px solid #000;
+		margin-left: 80px;
+		text-align: center;
+		outline: none;
+
+	}
+	.profile img{
+		border-radius: 100%;
+		outline: none;
+	}
+	.profile i{
+		cursor: pointer;
+	    margin-left: -35px;
+		background-color: #222;
+		text-align: center;
+		margin-top: -30px;
+		border-radius: 50%;
+		font-size: 20px;
+		color: #1DA1F2;
+	}
+	#file{
+		display: none;
+	}
+	#pname{
+		text-align: center;
+		margin-top: 10px;
+	}
+	.group_1{
+		margin-top: 40px;
+
+	}
+	.group_1,.group_2{
+		text-align: center;
+	}
+	.group_1 li{
+		padding: 5px 20px;
+		margin-left: 10px;
+		font-weight: bold;
+		font-size: 20px;
+	}
+	.group_2 li{
+		font-size: 15px;
+		font-weight: bold;
+	}
+	.buttons{
+		margin-top: 20px;
+		display: flex;
+		justify-content: center;
+	}
+	.buttons button{
+		margin-right: 10px;
+		margin-top: 30px;
+	}
+	.btn1{
+		padding: 10px 25px;
+		background: none;
+		border-radius: 3px;
+		border:1px solid black;
+		font-weight: bold;
+		outline: none;
+		cursor: pointer;
+	}
+	.btn2{
+		background:red;
+		border: none;
+		background: none;
+	}
+	.btn2 i{
+		font-size: 25px;
+		border: none;
+		padding: 0;
+		outline: none;
+		cursor: pointer;
+	}
+	.content{
+		display: none;
+		transition: all 0.3s ease;
+	}
+	.content div{
+		display: flex;
+		flex-direction: column;
+		width: 250px;
+		justify-content: center;
+		align-content: center;
+		margin-left: 50px;
+		margin-top: 20px;
+		transition: all 0.3s ease;
+	}
+	.content div input{
+		border: none;
+		margin-bottom: 5px;
+		font-size: 18px;
+		outline: none;
+		text-align: center;
+		border-radius: 5px;
+		background-color: #222;
+		color: #fff;
+	}
+	input[type=text]{
+		background: #222;
+	}
+	.content div button{
+		color: #333;
+		display: flex;
+		width: 60px;
+		justify-content: center;
+		padding: 5px 20px;
+		margin-left: 80px;
+		margin-top: 8px;
+		background-color: #25D366;
+		border: none;
+		border-radius: 6px;
+		
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<ol class="info">
+			<li><i class="fas fa-user-plus" title="add user"></i></li>
+			<li id="u_name">Prashik Dewtale</li>
+			<li><i class="fas fa-ellipsis-v"></i></li>
+		</ol>
+		<div class="profile">
+			<img id="img_frame" src="images/abc.jpg" alt="" width="150px" height="150px">
+		   <label for="file"><i class="fas fa-camera"></i></label>
+		   <input type="file" name="profle" id="file" onclick="upload(this.value)">
+		</div>
+
+		<div class="details">
+			<h3 id=pname>@Prashik Dewtale</h3>
+			<ol class="group_1">
+				<li style="color: #1DA1F2;">5k</li>
+				<li style="color: #25D366;">2k</li>
+				<li style="color: #E60023;">9k</li>
+			</ol>
+			<ol class="group_2">
+				<li style="color: #1DA1F2;">Followers</li>
+				<li style="color: #25D366;">Following</li>
+				<li style="color: #E60023;">Like</li>
+			</ol>
+			<div class="buttons">
+				<button class="btn1" id='btn1'>Edit Profile</button>
+				<button class="btn2"><i class="fas fa-bookmark"></i></button>
+			</div>
+             <div class="content" id="content">
+				 <div>
+					 <input type="text" name="name" id="name" placeholder="Enter Name">
+					 <input type="text" name="username" id="username" placeholder="User Name @">
+					 <button id="save">Save</button>
+				 </div>
+			 </div>
+		</div>
+	</div>
+</body>
+<script>
+	const img_frame=document.getElementById('img_frame');
+	const content = document.getElementById('content')
+	const btn =document.getElementById('btn1')
+	const name = document.getElementById('name')
+	const username = document.getElementById('username')
+	const save = document.getElementById('save')
+
+
+
+	function upload(img){
+		load(img)
+	}
+    function load(img){
+   console.log(img)
+   const Img=img.replace("C:\\fakepath\\","images\\")
+   img_frame.src=Img;
+   }
+	
+btn.addEventListener('click',function(e){
+		if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+	  content.style.display = "block";
+	}
+	e.preventDefault();
+
+	})
+
+
+
+save.addEventListener('click',
+	function (){
+		document.getElementById('u_name').innerText=name.value;
+		document.getElementById('pname').innerText=`@${username.value}`;
+		content.style.display = "none";
+
+	})
+</script>
+</html>
